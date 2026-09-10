@@ -14,7 +14,157 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cases: {
+        Row: {
+          age: number | null
+          clothing: string | null
+          created_at: string
+          description: string | null
+          full_name: string
+          gender: string | null
+          height_cm: number | null
+          id: string
+          investigator_notes: string | null
+          last_seen_at: string | null
+          last_seen_location: string
+          medical_notes: string | null
+          photo_url: string | null
+          priority: string
+          status: string
+          updated_at: string
+          user_id: string
+          vehicle: string | null
+        }
+        Insert: {
+          age?: number | null
+          clothing?: string | null
+          created_at?: string
+          description?: string | null
+          full_name: string
+          gender?: string | null
+          height_cm?: number | null
+          id?: string
+          investigator_notes?: string | null
+          last_seen_at?: string | null
+          last_seen_location: string
+          medical_notes?: string | null
+          photo_url?: string | null
+          priority?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+          vehicle?: string | null
+        }
+        Update: {
+          age?: number | null
+          clothing?: string | null
+          created_at?: string
+          description?: string | null
+          full_name?: string
+          gender?: string | null
+          height_cm?: number | null
+          id?: string
+          investigator_notes?: string | null
+          last_seen_at?: string | null
+          last_seen_location?: string
+          medical_notes?: string | null
+          photo_url?: string | null
+          priority?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+          vehicle?: string | null
+        }
+        Relationships: []
+      }
+      predictions: {
+        Row: {
+          case_id: string
+          created_at: string
+          id: string
+          locations: Json
+          model: string | null
+          next_steps: Json
+          risk_level: string | null
+          summary: string
+          user_id: string
+        }
+        Insert: {
+          case_id: string
+          created_at?: string
+          id?: string
+          locations?: Json
+          model?: string | null
+          next_steps?: Json
+          risk_level?: string | null
+          summary: string
+          user_id: string
+        }
+        Update: {
+          case_id?: string
+          created_at?: string
+          id?: string
+          locations?: Json
+          model?: string | null
+          next_steps?: Json
+          risk_level?: string | null
+          summary?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "predictions_case_id_fkey"
+            columns: ["case_id"]
+            isOneToOne: false
+            referencedRelation: "cases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sightings: {
+        Row: {
+          case_id: string
+          confidence: string
+          created_at: string
+          id: string
+          location: string
+          notes: string | null
+          occurred_at: string | null
+          reported_by: string | null
+          user_id: string
+        }
+        Insert: {
+          case_id: string
+          confidence?: string
+          created_at?: string
+          id?: string
+          location: string
+          notes?: string | null
+          occurred_at?: string | null
+          reported_by?: string | null
+          user_id: string
+        }
+        Update: {
+          case_id?: string
+          confidence?: string
+          created_at?: string
+          id?: string
+          location?: string
+          notes?: string | null
+          occurred_at?: string | null
+          reported_by?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sightings_case_id_fkey"
+            columns: ["case_id"]
+            isOneToOne: false
+            referencedRelation: "cases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
